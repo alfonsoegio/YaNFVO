@@ -1,0 +1,10 @@
+*.o
+tmp/*
+*.yy.c
+y.tab.h
+y.tab.c
+nfv-parse
+*.a
+test
+a.out
+samples/*.c
