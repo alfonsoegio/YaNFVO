@@ -167,3 +167,21 @@ usually executes configuration scripts on the machines using
 private keys generated in the VIM or passed by the orchestrator
 itself according to operator requests, etc ... 
 
+### Current approach
+
+Current approaches have to do building medium-to-big orchestrator
+APIs trying to cover all the features needed to operate this
+kind of services taking static descriptors as input.
+
+Despite the Standard covers pretty well all the required
+features needed in order to manage and orchestrate the
+services, several problems arise when dealing with practical
+use-cases:
+
+- The complexity of the descriptors increases exponentially
+difficulting developers and operators to diagnose exceptions
+and failures.
+
+- The trade-off between self-containability and universality
+of a descriptor; many times the descriptor is hard-coded in order
+to match vm image ids, flavors, network ids to attach, etc ...
