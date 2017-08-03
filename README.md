@@ -19,8 +19,9 @@ make
 ./test samples/list_flavors.js
 ```
 
-Pending things, august 2017:
+Pending things (almost everything), august 2017:
 
+- Resource specs
 - Symbol table - Scoping Stack
 - Python API server generation
 - Openstack client libraries integration
@@ -159,7 +160,7 @@ IPs, net masks, etc ...
 
 - Lifecycle management:
 Either delegating in some middle-ware or not, the NFV-orchestrator
-usually executing configuration scripts on the machines using
+usually executes configuration scripts on the machines using
 private keys generated in the VIM or passed by the orchestrator
 itself according to operator requests, etc ... 
 
