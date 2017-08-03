@@ -2,6 +2,90 @@
 
 SmartNFVO is the NFV smart orchestrator
 
+## Key idea: Network service compiler
+
+The purpose of this software is to provide
+a compiler for a network service descriptor 
+in order to build an API specifically devoted
+to manage the service provisioning, deployment and
+life-cycle events. 
+
+Basic syntax comprises the resource creation following
+the basic template rules provided herein:
+
+```
+  resource("id1") {
+    attribute = 1;
+    attribute2 = "value";
+      nested_resource("id2") {}
+      nested_resource("id3") {
+        attribute = id1->function("param");
+      }
+    }
+```
+
+In the example, resource "id1" is going to be provisioned,
+executed or deployed
+before nested_resources "id2" and "id3" because a parent
+resource is by convention a requirement for it's childs;
+this way nested_resource "id3" can query it's parent "id1"
+once it's created and provisioned about some functional
+parameteres. 
+
+For example:
+
+- Multiple PoPs (Openstack)
+
+```
+  openstack("myDatacenter") {
+    host="88.88.88.88";
+    user="user";
+    pass="pass";
+    tenant_name="project";
+    dns="8.8.8.8";
+    identity_version=":5000/v3";
+  }
+```
+
+- Inside an scoped openstack environment: VDU deployment
+and bootstrapping
+
+```
+      keypair("myKeypair") {
+        nova_generated = 1;
+	flavors("myFlavors") {
+	  image("ubuntu") {
+	    url = "https://cloud-images.ubuntu.com/trusty/current/trusty-server-cloudimg-amd64-disk1.img";
+	    format = "qcow2";
+	    vdu("vdu0") {
+	      flavor = myFlavors->random();
+	      request("myTest") {
+		script("test_script") {
+		  user = "ubuntu";
+		  key = myKeypair->private();
+		  source = "./samples/test_script.sh";
+		}
+	      }
+	    }
+	  }
+	}
+      }
+
+```
+
+Previous example consists on:
+
+-- creating a keypair named myKeypair using openstack's Nova API
+-- getting the available flavors from the VIM an naming them as myFlavors
+-- creating a new image on Openstack's Glance Service named ubuntu
+-- deploying the virtual machine image as a virtual deployment unit vdu0
+-- defining some endpoint in the API to be generated called test_script
+using the previously generated private key
+
+At the end ideally the compiling, provisioning, deployment and setup
+should end with a brand new RESTful API supporting all the operations
+defined in the descriptor. 
+
 ## What is this about?
 
 During last year I was introduced to a new
