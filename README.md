@@ -169,7 +169,7 @@ itself according to operator requests, etc ...
 
 ### Current approach
 
-Current approaches have to do building medium-to-big orchestrator
+Current approaches have to do with building medium-to-big orchestrator
 APIs trying to cover all the features needed to operate this
 kind of services taking static descriptors as input.
 
