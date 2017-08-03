@@ -21,11 +21,13 @@ make
 
 Pending things (almost everything), august 2017:
 
-- Resource specs
+- Resource specs: openstack, router, vdu, vlinks, etc ...
 - Symbol table - Scoping Stack
 - Python API server generation
 - Openstack client libraries integration
 - GUI generation as a frontend to generated APIs
+- Life-cycle Scripts Templating System (enabling symbol table interpolation)
+- Descriptor dynamic conditionals and function call support
 
 ## Key idea: Network service compiler
 
