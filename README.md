@@ -2,6 +2,30 @@
 
 SmartNFVO is the NFV smart orchestrator
 
+
+## Dependencies
+
+- compiler: gcc, flex, bison
+- product RESTful APIs: python, flask, requests and ...
+
+## Clone, compile and run first tests
+
+By now, there's only the parser and the tree-building code.
+
+```
+git clone https://github.com/alfonsoegio/SmartNFVO.git
+cd SmartNFVO
+make
+./test samples/list_flavors.js
+```
+
+Pending things, august 2017:
+
+- Symbol table - Scoping Stack
+- Python API server generation
+- Openstack client libraries integration
+- GUI generation as a frontend to generated APIs
+
 ## Key idea: Network service compiler
 
 The purpose of this software is to provide
