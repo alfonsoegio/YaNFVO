@@ -23,7 +23,7 @@ neither
 the quality of the tools and projects intended to operate
 this kind of service management and orchestration systems;
 my thoughts about this systems usually have to do with the fact
-that maybe we trying to solve a problem
+that maybe we are trying to solve a problem
 without the right tools, twisting the approach to meet particular
 needs here and there when trying to adapt real systems
 to meet the NFV paradigm and perform real stuff at the same time.
