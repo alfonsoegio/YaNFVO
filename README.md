@@ -110,8 +110,9 @@ Previous example consists on:
 using the previously generated private key
 
 At the end ideally the compiling, provisioning, deployment and setup
-should end with a brand new RESTful API supporting all the operations
-defined in the descriptor. 
+should end with a brand new RESTful API running in your system
+supporting all the operations defined over the deployed service
+as stated in the descriptor. 
 
 ## What is this about?
 
