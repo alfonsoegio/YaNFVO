@@ -5,7 +5,7 @@ LD = gcc
 CC_FLAGS = -Wall -Werror --pedantic -c -O3
 LD_FLAGS = -Wall -Werror --pedantic -l -O3
 
-OBJECTS = nfv_resource.o nfv_assignment.o
+OBJECTS = nfv_resource.o nfv_assignment.o nfv_symtab.o
 
 nfv_models.a:  $(OBJECTS)
 	$(AR) r nfv_models.a $(OBJECTS)
