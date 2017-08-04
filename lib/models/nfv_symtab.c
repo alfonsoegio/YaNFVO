@@ -35,6 +35,13 @@ nfv_symtab *nfv_symtab_copy(nfv_symtab *o)
 
 int nfv_symtab_append(nfv_symtab *o, nfv_resource *res)
 {
+  int i;
+  for(i=0;i<o->size;i++) {
+    if ( strcmp(res->id, o->symbols[i]) == 0 ) {
+      o->resources[i] = res;
+      return 0;
+    }
+  }
   o->symbols = (char **)realloc(o->symbols, (o->size+1)*sizeof(char *));
   o->symbols[o->size] = (char *)malloc(sizeof(char)*strlen(res->id));
   strcpy(o->symbols[o->size], res->id);
