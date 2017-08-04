@@ -1,4 +1,12 @@
 nfv("myNfv") {
+  openstack("LKJSAD") {
+    host="88.88.88.88";
+    user="user";
+    pass="pass";
+    tenant_name="project";
+    dns="8.8.8.8";
+    identity_version=":5000/v3";
+  }
   openstack("adam") {
     host="88.88.88.88";
     user="user";
@@ -6,17 +14,27 @@ nfv("myNfv") {
     tenant_name="project";
     dns="8.8.8.8";
     identity_version=":5000/v3";
-    network("adam") {
+    network("adam_network") {
+      type = "vlan";
+      schema = "192.10.10.0/24";
       router("myRouter") {
 	keypair("myKeypair") {
 	  nova_generated = 1;
-	  flavors("myflavors") {
+	  flavors("myFlavors") {
 	    image("ubuntu") {
 	      url = "https://cloud-images.ubuntu.com/trusty/current/trusty-server-cloudimg-amd64-disk1.img";
 	      format = "qcow2";
 	      vdu("vdu0") {
-		flavor = myflavors->random();
+		flavor = myFlavors->random();
 		request("myTest") {
+		  openstack("ANOTHER") {
+		    host="88.88.88.88";
+		    user="user";
+		    pass="pass";
+		    tenant_name="project";
+		    dns="8.8.8.8";
+		    identity_version=":5000/v3";
+		  }
 		  script("test_script") {
 		    user = "ubuntu";
 		    key = myKeypair->private();
