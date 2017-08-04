@@ -20,6 +20,8 @@ RPAREN \)
 LCBRACKET \{
 RCBRACKET \}
 EQUAL =
+GT >
+MINUS -
 SEMICOLON ;
 COLON ,
 WS [\t]+
@@ -60,6 +62,8 @@ STRING_LITERAL L?\"(\\.|[^\\"])*\"
 {RCBRACKET}       return RCBRACKET;
 {LSBRACKET}       return LSBRACKET;
 {RSBRACKET}       return RSBRACKET;
+{MINUS}           return MINUS;
+{GT}              return GT;
 {WS}              /* Ignore */
 {CR}              new_line();
 

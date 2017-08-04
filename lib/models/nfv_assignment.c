@@ -22,6 +22,22 @@ nfv_assignment_col *nfv_assignment_col_push(nfv_assignment_col *o, nfv_assignmen
   return o;
 }
 
+nfv_assignment *nfv_assignment_newReference(char *variable, char *ref, char *fcall)
+{
+  nfv_assignment *o;
+  o = (nfv_assignment *)malloc(sizeof(nfv_assignment));
+  o->variable = (char *)malloc(sizeof(char)*strlen(variable));
+  strcpy(o->variable, variable);
+  o->array_size = 0;
+  o->int_value = 0;
+  o->literal_value = NULL;
+  o->reference = (char *)malloc(sizeof(char)*strlen(ref));
+  strcpy(o->reference, ref);
+  o->fcall = (char *)malloc(sizeof(char)*strlen(fcall));
+  strcpy(o->fcall, fcall);
+  return o;
+}
+
 nfv_assignment *nfv_assignment_newInt(char *variable, int value)
 {
   nfv_assignment *o;
@@ -31,6 +47,8 @@ nfv_assignment *nfv_assignment_newInt(char *variable, int value)
   o->array_size = 0;
   o->int_value = value;
   o->literal_value = NULL;
+  o->reference = NULL;
+  o->fcall = NULL;
   return o;
 }
 
@@ -44,6 +62,8 @@ nfv_assignment *nfv_assignment_newLiteral(char *variable, char *value)
   o->int_value = 0;
   o->literal_value = (char *)malloc(sizeof(char)*strlen(value));
   strcpy(o->literal_value, value);
+  o->reference = NULL;
+  o->fcall = NULL;
   return o;
 }
 
@@ -80,5 +100,7 @@ nfv_assignment *nfv_assignment_newArray(char *variable, char **strings, int nstr
   }
   o->int_value = 0;
   o->literal_value = NULL;
+  o->reference = NULL;
+  o->fcall = NULL;
   return o;
 }

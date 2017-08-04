@@ -16,7 +16,9 @@ int main(int argc, char *argv[])
     return 0;
   }
   nfv = nfv_parse(argc, argv);
+  /* build the global st */
   st = nfv_symtab_new(nfv);
   nfv_symtab_dump(st);
+  nfv_resource_dump(nfv, 0);
   return 0;
 }
