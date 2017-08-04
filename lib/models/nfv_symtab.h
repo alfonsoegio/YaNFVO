@@ -3,8 +3,6 @@
 
 #include "nfv_resource.h"
 
-typedef struct nfv_symtab nfv_symtab;
-
 struct nfv_symtab {
   char **symbols;
   nfv_resource **resources;

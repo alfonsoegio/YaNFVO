@@ -13,6 +13,7 @@ nfv_symtab *nfv_symtab_new(nfv_resource *root)
   o->resources[0] = root;
   o->size = 1;
   nfv_symtab_build(o, root->child);
+  root->st = NULL;
   return o;
 }
 
@@ -32,16 +33,21 @@ int nfv_symtab_build(nfv_symtab *o, nfv_resource *res)
   nfv_symtab_append(o, res);
   if ( res->child == NULL && res->sibling == NULL) {
     /* DO NOTHING */
+    res->st = o;
   }
   if ( res->child == NULL && res->sibling != NULL ) {
     nfv_symtab_build(o, res->sibling);
+    res->sibling->st = o;
   }
   if ( res->child != NULL && res->sibling == NULL ) {
     nfv_symtab_build(o, res->child);
+    res->child->st = o;
   }
   if ( res->child != NULL && res->sibling != NULL ) {
     nfv_symtab_build(o, res->child);
+    res->child->st = o;
     nfv_symtab_build(o, res->sibling);
+    res->sibling->st = o;
   }
   return 0;
 }
