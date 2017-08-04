@@ -51,6 +51,8 @@
 %token <string> VARIABLE
 %token <string> STRING_LITERAL
 
+%token MINUS
+%token GT
 %token EQUAL
 %token LPAREN
 %token RPAREN
@@ -115,6 +117,11 @@ assignment: VARIABLE EQUAL INTEGER SEMICOLON
 VARIABLE EQUAL STRING_LITERAL SEMICOLON
 {
   $$ = nfv_assignment_newLiteral($1, $3);
+}
+|
+VARIABLE EQUAL VARIABLE MINUS GT VARIABLE LPAREN RPAREN SEMICOLON
+{
+  $$ = nfv_assignment_newReference($1, $3, $6);
 }
 
 %%

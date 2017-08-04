@@ -41,10 +41,16 @@ int nfv_resource_dumpNode(nfv_resource *o, int level)
     for(i=0;i<o->assignments->size;i++) {
       _indent(level+1);
       printf("* %s = ", o->assignments->assignments[i]->variable);
-      if ( o->assignments->assignments[i]->literal_value != NULL ) {
-	printf("%s\n", o->assignments->assignments[i]->literal_value);
+      if ( o->assignments->assignments[i]->reference != NULL ) {
+	printf("%s from %s\n",
+	       o->assignments->assignments[i]->fcall,
+	       o->assignments->assignments[i]->reference);
       } else {
-	printf("%d\n", o->assignments->assignments[i]->int_value);
+	if ( o->assignments->assignments[i]->literal_value != NULL ) {
+	  printf("%s\n", o->assignments->assignments[i]->literal_value);
+	} else {
+	  printf("%d\n", o->assignments->assignments[i]->int_value);
+	}
       }
     }
   }

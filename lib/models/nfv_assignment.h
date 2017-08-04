@@ -11,6 +11,8 @@ struct nfv_assignment {
   char *variable;
   char *literal_value;
   char **array_value;
+  char *reference;
+  char *fcall;
   int array_size;
 };
 
@@ -24,6 +26,7 @@ nfv_assignment_col *nfv_assignment_col_new(nfv_assignment *first);
 nfv_assignment *nfv_assignment_newArray(char *variable, char **strings, int nstrings);
 nfv_assignment *nfv_assignment_newInt(char *variable, int value);
 nfv_assignment *nfv_assignment_newLiteral(char *variable, char *value);
+nfv_assignment *nfv_assignment_newReference(char *variable, char *ref, char *fcall);
 int nfv_assignment_free(nfv_assignment *o);
 
 #endif
