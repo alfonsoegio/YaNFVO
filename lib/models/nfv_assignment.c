@@ -22,6 +22,17 @@ nfv_assignment_col *nfv_assignment_col_push(nfv_assignment_col *o, nfv_assignmen
   return o;
 }
 
+nfv_assignment *nfv_assignment_col_search(nfv_assignment_col *o, char *variable)
+{
+  int i;
+  for(i=0;i<o->size;i++) {
+    if ( strcmp(o->assignments[i]->variable, variable) == 0 ){
+      return o->assignments[i];
+    }
+  }
+  return NULL;
+}
+
 nfv_assignment *nfv_assignment_newReference(char *variable, char *ref, char *fcall)
 {
   nfv_assignment *o;

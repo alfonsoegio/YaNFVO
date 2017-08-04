@@ -21,6 +21,7 @@ struct nfv_assignment_col {
   int size;
 };
 
+nfv_assignment *nfv_assignment_col_search(nfv_assignment_col *o, char *variable);
 nfv_assignment_col *nfv_assignment_col_push(nfv_assignment_col *o, nfv_assignment *next);
 nfv_assignment_col *nfv_assignment_col_new(nfv_assignment *first);
 nfv_assignment *nfv_assignment_newArray(char *variable, char **strings, int nstrings);
