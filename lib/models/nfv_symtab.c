@@ -17,6 +17,22 @@ nfv_symtab *nfv_symtab_new(nfv_resource *root)
   return o;
 }
 
+nfv_symtab *nfv_symtab_copy(nfv_symtab *o)
+{
+  int i;
+  nfv_symtab *st;
+  st = (nfv_symtab *)malloc(sizeof(nfv_symtab));
+  st->symbols = (char **)malloc(o->size*sizeof(char *));
+  st->resources = (nfv_resource **)malloc(o->size*sizeof(nfv_resource *));
+  for(i=0;i<o->size;i++) {
+    st->symbols[i] = (char *)malloc(strlen(o->symbols[i])*sizeof(char));
+    strcpy(st->symbols[i], o->symbols[i]);
+    st->resources[i] = o->resources[i];
+  }
+  st->size = o->size;
+  return st;
+}
+
 int nfv_symtab_append(nfv_symtab *o, nfv_resource *res)
 {
   o->symbols = (char **)realloc(o->symbols, (o->size+1)*sizeof(char *));
@@ -31,23 +47,23 @@ int nfv_symtab_append(nfv_symtab *o, nfv_resource *res)
 int nfv_symtab_build(nfv_symtab *o, nfv_resource *res)
 {
   nfv_symtab_append(o, res);
+  res->st = nfv_symtab_copy(o);
   if ( res->child == NULL && res->sibling == NULL) {
     /* DO NOTHING */
-    res->st = o;
   }
   if ( res->child == NULL && res->sibling != NULL ) {
     nfv_symtab_build(o, res->sibling);
-    res->sibling->st = o;
+    res->sibling->st = nfv_symtab_copy(o);
   }
   if ( res->child != NULL && res->sibling == NULL ) {
     nfv_symtab_build(o, res->child);
-    res->child->st = o;
+    res->child->st = nfv_symtab_copy(o);
   }
   if ( res->child != NULL && res->sibling != NULL ) {
     nfv_symtab_build(o, res->child);
-    res->child->st = o;
+    res->child->st = nfv_symtab_copy(o);
     nfv_symtab_build(o, res->sibling);
-    res->sibling->st = o;
+    res->sibling->st = nfv_symtab_copy(o);
   }
   return 0;
 }
@@ -55,6 +71,9 @@ int nfv_symtab_build(nfv_symtab *o, nfv_resource *res)
 int nfv_symtab_dump(nfv_symtab *o)
 {
   int i;
+  if ( o == NULL ) {
+    return 1;
+  }
   for(i=0;i<o->size;i++) {
     printf("%s -> %s\n", o->symbols[i], o->resources[i]->label);
   }
