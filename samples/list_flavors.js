@@ -26,15 +26,6 @@ nfv("myNfv") {
 	      format = "qcow2";
 	      vdu("vdu0") {
 		flavor = myFlavors->random();
-		request("myTest") {
-		  openstack("ANOTHER") {
-		    host="88.88.88.88";
-		    user="user";
-		    pass="pass";
-		    tenant_name="project";
-		    dns="8.8.8.8";
-		    identity_version=":5000/v3";
-		  }
 		  script("test_script") {
 		    user = "ubuntu";
 		    key = myKeypair->private();

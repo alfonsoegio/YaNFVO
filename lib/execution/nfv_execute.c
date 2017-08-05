@@ -47,7 +47,7 @@ int nfv_executeNode(nfv_resource *o, int level)
     printf("CREATING SERVER called %s\n", o->id);
     printf("We are going to need an openstack ...\n");
     printf("Openstack found in symbol table: %s\n",
-	   nfv_symtab_searchByType(o->st, "openstack")->id);
+    	   nfv_symtab_searchByType(o->st, "openstack")->id);
     printf("\n");
   }
   return 0;

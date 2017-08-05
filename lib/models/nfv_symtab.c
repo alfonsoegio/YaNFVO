@@ -78,7 +78,7 @@ int nfv_symtab_build(nfv_symtab *o, nfv_resource *res)
 nfv_resource *nfv_symtab_searchByType(nfv_symtab *o, char *type)
 {
   int i;
-  for(i=0;i<o->size;i++) {
+  for(i=o->size-1;i>=0;i--) {
     if ( strcmp(o->resources[i]->label, type) == 0 ){
       return o->resources[i];
     }
