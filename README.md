@@ -54,7 +54,7 @@ the basic template rules provided herein:
 In the example, resource "id1" is going to be provisioned,
 executed or deployed
 before nested_resources "id2" and "id3" because a parent
-resource is by convention a requirement for it's childs;
+resource is by convention a requirement for it's children;
 this way nested_resource "id3" can query it's parent "id1"
 once it's created and provisioned about some functional
 parameteres.
