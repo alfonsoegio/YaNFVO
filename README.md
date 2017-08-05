@@ -27,15 +27,15 @@ Pending things (almost everything), august 2017:
 - Openstack client libraries integration
 - GUI generation as a frontend to generated APIs
 - Life-cycle Scripts Templating System (enabling symbol table interpolation)
-- Descriptor dynamic conditionals and function call support
+- Dynamic conditionals and function call support
 
 ## Key idea: Network service compiler
 
 The purpose of this software is to provide
-a compiler for a network service descriptor 
-in order to build an API specifically devoted
+a compiler for a network service descriptor
+in order to build an API specifically aimed
 to manage the service provisioning, deployment and
-life-cycle events. 
+life-cycle events.
 
 Basic syntax comprises the resource creation following
 the basic template rules provided herein:
@@ -54,10 +54,10 @@ the basic template rules provided herein:
 In the example, resource "id1" is going to be provisioned,
 executed or deployed
 before nested_resources "id2" and "id3" because a parent
-resource is by convention a requirement for it's childs;
+resource is by convention a requirement for it's children;
 this way nested_resource "id3" can query it's parent "id1"
 once it's created and provisioned about some functional
-parameteres. 
+parameteres.
 
 For example:
 
@@ -109,10 +109,10 @@ Previous example consists on:
 -- defining some endpoint in the API to be generated called test_script
 using the previously generated private key
 
-At the end ideally the compiling, provisioning, deployment and setup
+At the end the compiling, provisioning, deployment and setup
 should end with a brand new RESTful API running in your system
 supporting all the operations defined over the deployed service
-as stated in the descriptor. 
+as stated in the descriptor.
 
 ## What is this about?
 
@@ -123,13 +123,13 @@ Virtualisation ecosystem mainly based in the
 European Telecommunications Standards Institute NFV-standard.
 
 The experience is currently very challenging, but
-after many times facing the same problems, the feeling
+after many times with the same problems, the feeling
 I have is that the NFV standard it's not production
 ready in order to meet the needs of function vendors
 and network operators.
 
 The main reason behind the problems faced when
-trying to build NFV systems that really work has not
+trying to build NFV systems that really work has nothing
 to do with some lack of feature coverage in the standards
 neither
 the quality of the tools and projects intended to operate
@@ -142,7 +142,7 @@ to meet the NFV paradigm and perform real stuff at the same time.
 
 ### Descriptors, templates and friends
 
-The NFV standard consists of an specification
+The NFV standard consists on an specification
 about how to describe services and it's life-cycle
 management. All the approaches to implement systems
 dealing with that kind of descriptors rely their
@@ -165,7 +165,7 @@ IPs, net masks, etc ...
 Either delegating in some middle-ware or not, the NFV-orchestrator
 usually executes configuration scripts on the machines using
 private keys generated in the VIM or passed by the orchestrator
-itself according to operator requests, etc ... 
+itself according to operator requests, etc ...
 
 ### Current approach
 
