@@ -16,10 +16,10 @@ int main(int argc, char *argv[])
   }
   nfv = nfv_parse(argc, argv);
   nfv_symtab_new(nfv);
-  printf("SYMBOL TABLE FOR %s (\"adam\" is an openstack PoP)\n", nfv->child->id);
-  nfv_symtab_dump(nfv->child->st);
-  printf("SYMBOL TABLE FOR %s (\"adam\" is now a network)\n", nfv->child->child->child->id);
-  nfv_symtab_dump(nfv->child->child->child->st);
+  /* printf("SYMBOL TABLE FOR %s (\"adam\" is an openstack PoP)\n", nfv->child->id); */
+  /* nfv_symtab_dump(nfv->child->st); */
+  /* printf("SYMBOL TABLE FOR %s (\"adam\" is now a network)\n", nfv->child->child->child->id); */
+  /* nfv_symtab_dump(nfv->child->child->child->st); */
   printf("\n\n");
   nfv_execute(nfv, 0);
   printf("\n");
