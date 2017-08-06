@@ -9,14 +9,16 @@ int nfv_executeNode(nfv_resource *o, int level)
     return 0;
   }
   if ( strcmp(o->label, "openstack") == 0 ) {
-    printf("CONNECTING TO a PoP called %s\n", o->id);
-    printf("ATTRIBUTES\n");
-    printf("HOST %s %s %s %s\n",
+    printf("# CONNECTING TO a PoP called %s\n", o->id);
+    printf("# ATTRIBUTES\n");
+    printf("    openstack['%s'] = Openstack('%s', '%s', '%s', '%s', '%s')\n",
+	   o->id,
 	   nfv_assignment_col_search(o->assignments, "host")->literal_value,
-	   nfv_assignment_col_search(o->assignments, "tenant_name")->literal_value,
-	   nfv_assignment_col_search(o->assignments, "user")->literal_value,
-	   nfv_assignment_col_search(o->assignments, "pass")->literal_value);
-    printf("\n");
+	   nfv_assignment_col_search(o->assignments, "project")->literal_value,
+	   nfv_assignment_col_search(o->assignments, "username")->literal_value,
+	   nfv_assignment_col_search(o->assignments, "password")->literal_value,
+	   nfv_assignment_col_search(o->assignments, "iversion")->literal_value);
+
   }
   if ( strcmp(o->label, "network") == 0 ) {
     printf("CREATING A NETWORK called %s\n", o->id);

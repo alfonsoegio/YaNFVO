@@ -48,7 +48,8 @@ STRING_LITERAL L?\"(\\.|[^\\"])*\"
 }
 
 {STRING_LITERAL} {
-  strcpy(yylval.string, yytext);
+  memcpy (yylval.string, yytext + 1, yyleng - 2);
+  yylval.string[yyleng - 2] = 0;
   return(STRING_LITERAL);
 }
 

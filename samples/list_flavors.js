@@ -1,19 +1,19 @@
 nfv("myNfv") {
   openstack("LKJSAD") {
     host="88.88.88.88";
-    user="user";
-    pass="pass";
-    tenant_name="project";
+    username="user";
+    password="pass";
+    project="project";
     dns="8.8.8.8";
-    identity_version=":5000/v3";
+    iversion=":5000/v3";
   }
   openstack("adam") {
     host="88.88.88.88";
-    user="user";
-    pass="pass";
-    tenant_name="project";
+    username="user";
+    password="pass";
+    project="project";
     dns="8.8.8.8";
-    identity_version=":5000/v3";
+    iversion=":5000/v3";
     network("adam_network") {
       type = "vlan";
       schema = "192.10.10.0/24";

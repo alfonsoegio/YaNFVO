@@ -8,3 +8,4 @@ nfv-parse
 test
 a.out
 samples/*.c
+venv
