@@ -4,7 +4,8 @@
 #include "../models/nfv_resource.h"
 #include "../models/nfv_assignment.h"
 #include "../models/nfv_symtab.h"
+#include <stdio.h>
 
-int nfv_execute(nfv_resource *nfv, int level);
+int nfv_execute(nfv_resource *nfv, FILE *outfile);
 
 #endif

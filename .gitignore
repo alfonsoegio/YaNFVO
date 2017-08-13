@@ -9,3 +9,5 @@ test
 a.out
 samples/*.c
 venv
+*.pyc
+server/tmp.py

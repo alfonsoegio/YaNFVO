@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-int nfv_executeNode(nfv_resource *o, int level)
+int nfv_executeNode(nfv_resource *o, FILE *outfile)
 {
   if ( o == NULL ) {
     printf("NULL\n");
@@ -10,15 +10,13 @@ int nfv_executeNode(nfv_resource *o, int level)
   }
   if ( strcmp(o->label, "openstack") == 0 ) {
     printf("# CONNECTING TO a PoP called %s\n", o->id);
-    printf("# ATTRIBUTES\n");
-    printf("    openstack['%s'] = Openstack('%s', '%s', '%s', '%s', '%s')\n",
-	   o->id,
-	   nfv_assignment_col_search(o->assignments, "host")->literal_value,
-	   nfv_assignment_col_search(o->assignments, "project")->literal_value,
-	   nfv_assignment_col_search(o->assignments, "username")->literal_value,
-	   nfv_assignment_col_search(o->assignments, "password")->literal_value,
-	   nfv_assignment_col_search(o->assignments, "iversion")->literal_value);
-
+    fprintf(outfile, "openstack['%s'] = Openstack('%s', '%s', '%s', '%s', '%s')\n",
+    	    o->id,
+    	    nfv_assignment_col_search(o->assignments, "host")->literal_value,
+    	    nfv_assignment_col_search(o->assignments, "project")->literal_value,
+    	    nfv_assignment_col_search(o->assignments, "username")->literal_value,
+    	    nfv_assignment_col_search(o->assignments, "password")->literal_value,
+    	    nfv_assignment_col_search(o->assignments, "iversion")->literal_value);
   }
   if ( strcmp(o->label, "network") == 0 ) {
     printf("CREATING A NETWORK called %s\n", o->id);
@@ -55,23 +53,23 @@ int nfv_executeNode(nfv_resource *o, int level)
   return 0;
 }
 
-int nfv_execute(nfv_resource *o, int level)
+int nfv_execute(nfv_resource *o, FILE *outfile)
 {
   if (o->child == NULL && o->sibling == NULL) {
-    nfv_executeNode(o, level);
+    nfv_executeNode(o, outfile);
   }
   if ( o->child == NULL && o->sibling != NULL ) {
-    nfv_executeNode(o, level);
-    nfv_execute(o->sibling, level);
+    nfv_executeNode(o, outfile);
+    nfv_execute(o->sibling, outfile);
   }
   if ( o->child != NULL && o->sibling == NULL ) {
-    nfv_executeNode(o, level);
-    nfv_execute(o->child, level+1);
+    nfv_executeNode(o, outfile);
+    nfv_execute(o->child, outfile);
   }
   if ( o->child != NULL && o->sibling != NULL ) {
-    nfv_executeNode(o, level);
-    nfv_execute(o->child, level+1);
-    nfv_execute(o->sibling, level);
+    nfv_executeNode(o, outfile);
+    nfv_execute(o->child, outfile);
+    nfv_execute(o->sibling, outfile);
   }
   return 0;
 }

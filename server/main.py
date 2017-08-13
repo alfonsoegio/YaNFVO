@@ -6,6 +6,7 @@ from flask import Flask, request
 import threading
 import os
 import sys
+from lib.openstack import Openstack
 
 HOST = 'localhost'
 PORT = 8887

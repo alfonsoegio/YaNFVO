@@ -16,7 +16,7 @@ By now, there's only the parser and the tree-building code.
 git clone https://github.com/alfonsoegio/SmartNFVO.git
 cd SmartNFVO
 make
-./test samples/list_flavors.js
+./test samples/list_flavors.js server/tmp.py
 ```
 
 Pending things (almost everything), august 2017:
