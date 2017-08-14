@@ -39,7 +39,7 @@ if __name__ == "__main__":
 
     def flask_thread():
         print "Starting {0}".format(URL)
-        APP.run(debug=False, host=HOST, port=PORT)
+#        APP.run(debug=False, host=HOST, port=PORT)
     log_thread = threading.Thread(target=flask_thread)
     log_thread.start()
 
