@@ -12,7 +12,6 @@ int main(int argc, char *argv[])
   nfv_resource *nfv;
   FILE *outfile;
   char outputfilename[1024];
-  char command[1024];
 
   if ( argc < 3 ) {
     printf("Usage: %s input_filename output_filename\n", argv[0]);
