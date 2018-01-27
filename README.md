@@ -1,6 +1,6 @@
-# SmartNFVO
+# YaNFVO
 
-SmartNFVO is the NFV smart orchestrator
+YaNFVO is the Yet Another NFV Orchestrator
 
 
 ## Dependencies
@@ -13,8 +13,8 @@ SmartNFVO is the NFV smart orchestrator
 By now, there's only the parser and the tree-building code.
 
 ```
-git clone https://github.com/alfonsoegio/SmartNFVO.git
-cd SmartNFVO
+git clone https://github.com/alfonsoegio/YaNFVO.git
+cd YaNFVO
 make
 ./test samples/list_flavors.js server/tmp.py
 ```
@@ -122,7 +122,7 @@ in some projects regarding the Network Function
 Virtualisation ecosystem mainly based in the
 European Telecommunications Standards Institute NFV-standard.
 
-The experience is currently very challenging, but
+The experience is currently being very challenging, but
 after many times with the same problems, the feeling
 I have is that the NFV standard it's not production
 ready in order to meet the needs of function vendors
