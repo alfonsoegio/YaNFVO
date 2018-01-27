@@ -1,19 +1,11 @@
 nfv("myNfv") {
-  openstack("LKJSAD") {
-    host="88.88.88.88";
-    user="user";
-    pass="pass";
-    tenant_name="project";
-    dns="8.8.8.8";
-    identity_version=":5000/v3";
-  }
   openstack("adam") {
     host="88.88.88.88";
-    user="user";
-    pass="pass";
-    tenant_name="project";
+    username="user";
+    password="pass";
+    project="project";
     dns="8.8.8.8";
-    identity_version=":5000/v3";
+    iversion=":5000/v3";
     network("adam_network") {
       type = "vlan";
       schema = "192.10.10.0/24";
@@ -26,28 +18,27 @@ nfv("myNfv") {
 	      format = "qcow2";
 	      vdu("vdu0") {
 		flavor = myFlavors->random();
-		  script("test_script") {
-		    user = "ubuntu";
-		    key = myKeypair->private();
-		    source = "./samples/test_script.sh";
-		  }
+		script("test_script") {
+		  user = "ubuntu";
+		  key = myKeypair->private();
+		  source = "./samples/test_script.sh";
 		}
-		event("init") {
-		  script("test_script") {
-		    user = "ubuntu";
-		    key = myKeypair->private();
-		    source = "./samples/test_script.sh";
-		  }
+	      }
+	      event("init") {
+		script("test_script") {
+		  user = "ubuntu";
+		  key = myKeypair->private();
+		  source = "./samples/test_script.sh";
 		}
-		request("start") {
-		  nova_request = "os-start";
-		}
-		request("stop") {
-		  nova_request = "os-stop";
-		  script("message") {
-		    key = myKeypair->private();
-		    script = "#!/bin/env bash\necho 'GOING TO STOP'\n";
-		  }
+	      }
+	      request("start") {
+		nova_request = "os-start";
+	      }
+	      request("stop") {
+		nova_request = "os-stop";
+		script("message") {
+		  key = myKeypair->private();
+		  script = "#!/bin/env bash\necho 'GOING TO STOP'\n";
 		}
 	      }
 	    }
