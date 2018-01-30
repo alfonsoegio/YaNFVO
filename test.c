@@ -23,6 +23,7 @@ int main(int argc, char *argv[])
   printf("\n\n");
   outfile = fopen(outputfilename, "w");
   nfv_execute(nfv, outfile);
+  nfv_resource_dump(nfv, 1);
   fclose(outfile);
   printf("\n");
   return 0;
